@@ -1,5 +1,6 @@
 package com.example.test.spring.Testando.remedio.entity;
 
+import com.example.test.spring.Testando.remedio.DadosCadastroRemedio;
 import com.example.test.spring.Testando.remedio.Laboratorio;
 import com.example.test.spring.Testando.remedio.Via;
 
@@ -25,6 +26,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class RemedioEntity {
+
+
+    public RemedioEntity(DadosCadastroRemedio dados) {
+        this.nome = dados.nome();
+        this.via = dados.via();
+        this.lote = dados.lote();
+        this.quantidade = dados.quantidade();
+        this.validade = dados.validade();
+        this.laboratorio = dados.laboratorio();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
