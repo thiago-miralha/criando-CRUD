@@ -2,6 +2,7 @@ package com.example.test.spring.Testando.remedio.entity;
 
 import java.time.LocalDate;
 
+import com.example.test.spring.Testando.remedio.DadosAtualizarRemedio;
 import com.example.test.spring.Testando.remedio.DadosCadastroRemedio;
 import com.example.test.spring.Testando.remedio.Laboratorio;
 import com.example.test.spring.Testando.remedio.Via;
@@ -19,7 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Table(name = "Remedios")
 @Entity(name = "remedio")
 @Getter
@@ -28,7 +28,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class RemedioEntity {
-
 
     public RemedioEntity(DadosCadastroRemedio dados) {
         this.nome = dados.nome();
@@ -44,7 +43,6 @@ public class RemedioEntity {
     private long id;
     private String nome;
 
-
     @Enumerated(EnumType.STRING)
     private Via via;
     private String lote;
@@ -53,4 +51,18 @@ public class RemedioEntity {
 
     @Enumerated(EnumType.STRING)
     private Laboratorio laboratorio;
+
+    public void atualizarInformacoes(DadosAtualizarRemedio dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.via() != null) {
+            this.via = dados.via();
+        }
+
+        if (dados.laboratorio() != null) {
+            this.laboratorio = dados.laboratorio();
+        }
+    }
 }

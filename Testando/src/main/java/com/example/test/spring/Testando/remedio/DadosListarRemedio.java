@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import com.example.test.spring.Testando.remedio.entity.RemedioEntity;
 
 public record DadosListarRemedio(
+    Long id,
     String nome,
 	Via via,
 	String lote, 
@@ -15,7 +16,7 @@ public record DadosListarRemedio(
 
         public DadosListarRemedio (RemedioEntity remedio) {
 
-            this(remedio.getNome(),remedio.getVia(),remedio.getLote(),remedio.getQuantidade(),remedio.getValidade(),remedio.getLaboratorio());
+            this(remedio.getId(),remedio.getNome(),remedio.getVia(),remedio.getLote(),remedio.getQuantidade(),remedio.getValidade(),remedio.getLaboratorio());
 
 
         }
