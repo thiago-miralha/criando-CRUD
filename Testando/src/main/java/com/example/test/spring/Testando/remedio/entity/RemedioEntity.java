@@ -30,6 +30,7 @@ import lombok.Setter;
 public class RemedioEntity {
 
     public RemedioEntity(DadosCadastroRemedio dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.via = dados.via();
         this.lote = dados.lote();
@@ -40,8 +41,8 @@ public class RemedioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     private String nome;
+    private long id;
 
     @Enumerated(EnumType.STRING)
     private Via via;
@@ -51,6 +52,8 @@ public class RemedioEntity {
 
     @Enumerated(EnumType.STRING)
     private Laboratorio laboratorio;
+
+    private Boolean ativo;
 
     public void atualizarInformacoes(DadosAtualizarRemedio dados) {
         if (dados.nome() != null) {
@@ -64,5 +67,10 @@ public class RemedioEntity {
         if (dados.laboratorio() != null) {
             this.laboratorio = dados.laboratorio();
         }
+    }
+
+    public void inativar() {
+        this.ativo = false;
+
     }
 }

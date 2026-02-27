@@ -22,9 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
 @RestController
 @RequestMapping("/remedio")
 public class RemedioController {
@@ -64,4 +61,16 @@ public class RemedioController {
 
         repository.deleteById(id);
     }
+
+
+
+    @DeleteMapping("inativar/{id}")
+    @Transactional
+    public void inativar (@PathVariable Long id){
+        var remedio = repository.getReferenceById(id);
+        remedio.inativar();
+
+    }
+
+
 }
