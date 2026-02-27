@@ -41,8 +41,8 @@ public class RemedioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String nome;
     private long id;
+    private String nome;
 
     @Enumerated(EnumType.STRING)
     private Via via;

@@ -40,7 +40,7 @@ public class RemedioController {
 
     @GetMapping
     public List<DadosListarRemedio> listar() {
-        return repository.findAll().stream().map(DadosListarRemedio::new).toList();
+        return repository.findAllByAtivoTrue().stream().map(DadosListarRemedio::new).toList();
 
     }
 
