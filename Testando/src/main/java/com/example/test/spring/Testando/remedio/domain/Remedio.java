@@ -1,11 +1,9 @@
-package com.example.test.spring.Testando.entity;
+package com.example.test.spring.testando.remedio.domain;
 
 import java.time.LocalDate;
 
-import com.example.test.spring.Testando.dto.remedio.DadosAtualizarRemedio;
-import com.example.test.spring.Testando.dto.remedio.DadosCadastroRemedio;
-import com.example.test.spring.Testando.enums.Laboratorio;
-import com.example.test.spring.Testando.enums.Via;
+import com.example.test.spring.testando.remedio.dto.request.DadosAtualizarRemedio;
+import com.example.test.spring.testando.remedio.dto.request.DadosCadastroRemedio;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -27,9 +25,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class RemedioEntity {
+public class Remedio {
 
-    public RemedioEntity(DadosCadastroRemedio dados) {
+    public Remedio(DadosCadastroRemedio dados) {
         this.ativo = true;
         this.nome = dados.nome();
         this.via = dados.via();

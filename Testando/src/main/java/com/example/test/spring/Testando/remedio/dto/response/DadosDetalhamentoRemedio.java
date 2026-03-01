@@ -1,10 +1,10 @@
-package com.example.test.spring.Testando.dto.remedio;
+package com.example.test.spring.testando.remedio.dto.response;
 
 import java.time.LocalDate;
 
-import com.example.test.spring.Testando.entity.RemedioEntity;
-import com.example.test.spring.Testando.enums.Laboratorio;
-import com.example.test.spring.Testando.enums.Via;
+import com.example.test.spring.testando.remedio.domain.Laboratorio;
+import com.example.test.spring.testando.remedio.domain.Remedio;
+import com.example.test.spring.testando.remedio.domain.Via;
 
 public record DadosDetalhamentoRemedio( 
     Long id,
@@ -18,7 +18,7 @@ public record DadosDetalhamentoRemedio(
     
 ) {
 
-          public DadosDetalhamentoRemedio (RemedioEntity remedio) {
+          public DadosDetalhamentoRemedio (Remedio remedio) {
 
             this(remedio.getId(),
             remedio.getNome(),

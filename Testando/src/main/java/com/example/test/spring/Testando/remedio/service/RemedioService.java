@@ -1,4 +1,4 @@
-package com.example.test.spring.Testando.service;
+package com.example.test.spring.testando.remedio.service;
 
 
 import java.util.List;
@@ -6,9 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.test.spring.Testando.dto.remedio.*;
-import com.example.test.spring.Testando.entity.RemedioEntity;
-import com.example.test.spring.Testando.repository.RemedioRepository;
+import com.example.test.spring.testando.remedio.*;
+import com.example.test.spring.testando.remedio.domain.Remedio;
+import com.example.test.spring.testando.remedio.dto.request.DadosAtualizarRemedio;
+import com.example.test.spring.testando.remedio.dto.request.DadosCadastroRemedio;
+import com.example.test.spring.testando.remedio.dto.response.DadosDetalhamentoRemedio;
+import com.example.test.spring.testando.remedio.dto.response.DadosListarRemedio;
+import com.example.test.spring.testando.remedio.repository.RemedioRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -20,7 +24,7 @@ public class RemedioService {
 
     @Transactional
     public DadosDetalhamentoRemedio cadastrar(DadosCadastroRemedio dados) {
-        var remedio = new RemedioEntity(dados);
+        var remedio = new Remedio(dados);
         repository.save(remedio);
         return new DadosDetalhamentoRemedio(remedio);
     }

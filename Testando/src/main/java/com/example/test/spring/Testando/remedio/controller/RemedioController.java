@@ -1,4 +1,4 @@
-package com.example.test.spring.Testando.controller;
+package com.example.test.spring.testando.remedio.controller;
 
 import java.util.List;
 
@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.test.spring.Testando.dto.remedio.DadosAtualizarRemedio;
-import com.example.test.spring.Testando.dto.remedio.DadosCadastroRemedio;
-import com.example.test.spring.Testando.dto.remedio.DadosDetalhamentoRemedio;
-import com.example.test.spring.Testando.dto.remedio.DadosListarRemedio;
-import com.example.test.spring.Testando.entity.RemedioEntity;
-import com.example.test.spring.Testando.repository.RemedioRepository;
-import com.example.test.spring.Testando.service.RemedioService;
+import com.example.test.spring.testando.remedio.domain.Remedio;
+import com.example.test.spring.testando.remedio.dto.request.DadosAtualizarRemedio;
+import com.example.test.spring.testando.remedio.dto.request.DadosCadastroRemedio;
+import com.example.test.spring.testando.remedio.dto.response.DadosDetalhamentoRemedio;
+import com.example.test.spring.testando.remedio.dto.response.DadosListarRemedio;
+import com.example.test.spring.testando.remedio.repository.RemedioRepository;
+import com.example.test.spring.testando.remedio.service.RemedioService;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@RequestMapping("/remedio")
+@RequestMapping("/remedios")
 public class RemedioController {
 
     @Autowired
@@ -40,10 +40,7 @@ public class RemedioController {
 
         var dto = service.cadastrar(dados);
 
-        var uri = uriBuilder
-                .path("/remedio/{id}")
-                .buildAndExpand(dto.id())
-                .toUri();
+        var uri = uriBuilder.path("/remedio/{id}").buildAndExpand(dto.id()).toUri();
 
         return ResponseEntity.created(uri).body(dto);
     }
