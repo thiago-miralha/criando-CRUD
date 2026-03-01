@@ -23,6 +23,7 @@ import com.example.test.spring.Testando.repository.RemedioRepository;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/remedio")
@@ -33,13 +34,21 @@ public class RemedioController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosDetalhamentoRemedio> cadastrar(@RequestBody @Valid DadosCadastroRemedio dados, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DadosDetalhamentoRemedio> cadastrar(@RequestBody @Valid DadosCadastroRemedio dados,
+            UriComponentsBuilder uriBuilder) {
 
         var remedio = new RemedioEntity(dados);
         repository.save(remedio);
         var uri = uriBuilder.path("/remedio/{id}").buildAndExpand(remedio.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DadosDetalhamentoRemedio(remedio));
+
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoRemedio> buscar(@PathVariable Long id) {
+        var remedio = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoRemedio(remedio));
 
     }
 
