@@ -1,11 +1,11 @@
-package com.example.test.spring.Testando.remedio.entity;
+package com.example.test.spring.Testando.entity;
 
 import java.time.LocalDate;
 
-import com.example.test.spring.Testando.remedio.DadosAtualizarRemedio;
-import com.example.test.spring.Testando.remedio.DadosCadastroRemedio;
-import com.example.test.spring.Testando.remedio.Laboratorio;
-import com.example.test.spring.Testando.remedio.Via;
+import com.example.test.spring.Testando.dto.remedio.DadosAtualizarRemedio;
+import com.example.test.spring.Testando.dto.remedio.DadosCadastroRemedio;
+import com.example.test.spring.Testando.enums.Laboratorio;
+import com.example.test.spring.Testando.enums.Via;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

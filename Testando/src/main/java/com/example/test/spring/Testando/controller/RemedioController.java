@@ -1,85 +1,88 @@
 package com.example.test.spring.Testando.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.test.spring.Testando.remedio.DadosAtualizarRemedio;
-import com.example.test.spring.Testando.remedio.DadosCadastroRemedio;
-import com.example.test.spring.Testando.remedio.DadosListarRemedio;
-import com.example.test.spring.Testando.remedio.entity.RemedioEntity;
-import com.example.test.spring.Testando.remedio.repository.RemedioRepository;
+import com.example.test.spring.Testando.dto.remedio.DadosAtualizarRemedio;
+import com.example.test.spring.Testando.dto.remedio.DadosCadastroRemedio;
+import com.example.test.spring.Testando.dto.remedio.DadosDetalhamentoRemedio;
+import com.example.test.spring.Testando.dto.remedio.DadosListarRemedio;
+import com.example.test.spring.Testando.entity.RemedioEntity;
+import com.example.test.spring.Testando.repository.RemedioRepository;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-
 @RestController
 @RequestMapping("/remedio")
 public class RemedioController {
-
 
     @Autowired
     private RemedioRepository repository;
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
+    public ResponseEntity<DadosDetalhamentoRemedio> cadastrar(@RequestBody @Valid DadosCadastroRemedio dados, UriComponentsBuilder uriBuilder) {
 
-        repository.save(new RemedioEntity(dados));
+        var remedio = new RemedioEntity(dados);
+        repository.save(remedio);
+        var uri = uriBuilder.path("/remedio/{id}").buildAndExpand(remedio.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoRemedio(remedio));
 
     }
 
     @GetMapping
-    public List<DadosListarRemedio> listar() {
-        return repository.findAllByAtivoTrue().stream().map(DadosListarRemedio::new).toList();
+    public ResponseEntity<List<DadosListarRemedio>> listar() {
+        var lista = repository.findAllByAtivoTrue().stream().map(DadosListarRemedio::new).toList();
+        return ResponseEntity.ok(lista);
 
     }
 
-    
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizarRemedio dados){
+    public ResponseEntity<DadosDetalhamentoRemedio> atualizar(@RequestBody @Valid DadosAtualizarRemedio dados) {
 
         var remedio = repository.getReferenceById(dados.id());
         remedio.atualizarInformacoes(dados);
+        return ResponseEntity.ok(new DadosDetalhamentoRemedio(remedio));
     }
-
-  
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void excluir (@PathVariable Long id) {
-
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
         repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
-
-
 
     @DeleteMapping("inativar/{id}")
     @Transactional
-    public void inativar (@PathVariable Long id){
+    public ResponseEntity<Void> inativar(@PathVariable Long id) {
         var remedio = repository.getReferenceById(id);
         remedio.inativar();
+        return ResponseEntity.noContent().build();
 
     }
-
 
     @PutMapping("reativar/{id}")
     @Transactional
-    public void reativar (@PathVariable Long id) {
+    public ResponseEntity<Void> reativar(@PathVariable Long id) {
         var remedio = repository.getReferenceById(id);
         remedio.reativar();
-        
-    }
 
+        return ResponseEntity.noContent().build();
+
+    }
 
 }

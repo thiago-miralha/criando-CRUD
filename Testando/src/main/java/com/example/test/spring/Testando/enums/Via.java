@@ -1,4 +1,4 @@
-package com.example.test.spring.Testando.remedio;
+package com.example.test.spring.Testando.enums;
 
 public enum Via {
 

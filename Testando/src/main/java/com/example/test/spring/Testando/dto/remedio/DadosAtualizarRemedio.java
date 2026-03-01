@@ -1,4 +1,7 @@
-package com.example.test.spring.Testando.remedio;
+package com.example.test.spring.Testando.dto.remedio;
+
+import com.example.test.spring.Testando.enums.Laboratorio;
+import com.example.test.spring.Testando.enums.Via;
 
 import jakarta.validation.constraints.NotNull;
 
