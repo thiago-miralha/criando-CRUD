@@ -9,6 +9,16 @@
             "projectName": "Testando",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TestandoSpringBootApplication<Testando>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.test.spring.testando.TestandoSpringBootApplication",
+            "projectName": "Testando",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
