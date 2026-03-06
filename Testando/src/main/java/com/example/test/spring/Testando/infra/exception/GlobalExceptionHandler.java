@@ -1,4 +1,4 @@
-package com.example.test.spring.testando.remedio.exception;
+package com.example.test.spring.testando.infra.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
