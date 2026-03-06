@@ -1,9 +1,9 @@
-package com.example.test.spring.testando.remedio.domain;
+package com.example.test.spring.medicineapi.remedio.domain;
 
 import java.time.LocalDate;
 
-import com.example.test.spring.testando.remedio.dto.request.DadosAtualizarRemedio;
-import com.example.test.spring.testando.remedio.dto.request.DadosCadastroRemedio;
+import com.example.test.spring.medicineapi.remedio.dto.request.DadosAtualizarRemedio;
+import com.example.test.spring.medicineapi.remedio.dto.request.DadosCadastroRemedio;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

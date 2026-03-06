@@ -1,9 +1,9 @@
-package com.example.test.spring.testando.remedio.dto.request;
+package com.example.test.spring.medicineapi.remedio.dto.request;
 
 import java.time.LocalDate;
 
-import com.example.test.spring.testando.remedio.domain.Laboratorio;
-import com.example.test.spring.testando.remedio.domain.Via;
+import com.example.test.spring.medicineapi.remedio.domain.Laboratorio;
+import com.example.test.spring.medicineapi.remedio.domain.Via;
 
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Future;

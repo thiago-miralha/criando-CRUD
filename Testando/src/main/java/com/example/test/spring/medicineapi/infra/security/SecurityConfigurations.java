@@ -1,4 +1,4 @@
-package com.example.test.spring.testando.infra.security;
+package com.example.test.spring.medicineapi.infra.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

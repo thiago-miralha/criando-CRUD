@@ -1,4 +1,4 @@
-package com.example.test.spring.testando.infra.security;
+package com.example.test.spring.medicineapi.infra.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.test.spring.testando.usuarios.repository.UsuarioRepository;
+import com.example.test.spring.medicineapi.usuarios.repository.UsuarioRepository;
 
 @Service
 public class AutenticacaoService implements UserDetailsService {

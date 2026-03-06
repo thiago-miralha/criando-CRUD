@@ -1,10 +1,10 @@
-package com.example.test.spring.testando.remedio.dto.response;
+package com.example.test.spring.medicineapi.remedio.dto.response;
 
 import java.time.LocalDate;
 
-import com.example.test.spring.testando.remedio.domain.Laboratorio;
-import com.example.test.spring.testando.remedio.domain.Remedio;
-import com.example.test.spring.testando.remedio.domain.Via;
+import com.example.test.spring.medicineapi.remedio.domain.Laboratorio;
+import com.example.test.spring.medicineapi.remedio.domain.Remedio;
+import com.example.test.spring.medicineapi.remedio.domain.Via;
 
 public record DadosDetalhamentoRemedio( 
     Long id,

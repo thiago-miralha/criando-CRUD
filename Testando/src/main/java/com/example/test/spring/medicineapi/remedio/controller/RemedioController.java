@@ -1,4 +1,4 @@
-package com.example.test.spring.testando.remedio.controller;
+package com.example.test.spring.medicineapi.remedio.controller;
 
 import java.util.List;
 
@@ -14,17 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.test.spring.testando.remedio.domain.Remedio;
-import com.example.test.spring.testando.remedio.dto.request.DadosAtualizarRemedio;
-import com.example.test.spring.testando.remedio.dto.request.DadosCadastroRemedio;
-import com.example.test.spring.testando.remedio.dto.response.DadosDetalhamentoRemedio;
-import com.example.test.spring.testando.remedio.dto.response.DadosListarRemedio;
-import com.example.test.spring.testando.remedio.repository.RemedioRepository;
-import com.example.test.spring.testando.remedio.service.RemedioService;
+import com.example.test.spring.medicineapi.remedio.dto.request.DadosAtualizarRemedio;
+import com.example.test.spring.medicineapi.remedio.dto.request.DadosCadastroRemedio;
+import com.example.test.spring.medicineapi.remedio.dto.response.DadosDetalhamentoRemedio;
+import com.example.test.spring.medicineapi.remedio.dto.response.DadosListarRemedio;
+import com.example.test.spring.medicineapi.remedio.service.RemedioService;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/remedios")

@@ -1,4 +1,4 @@
-package com.example.test.spring.testando;
+package com.example.test.spring.medicineapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

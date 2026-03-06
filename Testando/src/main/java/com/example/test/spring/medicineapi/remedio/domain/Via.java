@@ -1,4 +1,4 @@
-package com.example.test.spring.testando.remedio.domain;
+package com.example.test.spring.medicineapi.remedio.domain;
 
 public enum Via {
 
