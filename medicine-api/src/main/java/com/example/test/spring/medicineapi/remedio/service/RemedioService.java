@@ -1,11 +1,11 @@
 package com.example.test.spring.medicineapi.remedio.service;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.test.spring.medicineapi.infra.exception.ResourceNotFoundException;
 import com.example.test.spring.medicineapi.remedio.domain.Remedio;
 import com.example.test.spring.medicineapi.remedio.dto.request.DadosAtualizarRemedio;
 import com.example.test.spring.medicineapi.remedio.dto.request.DadosCadastroRemedio;
@@ -29,7 +29,11 @@ public class RemedioService {
     }
 
     public DadosDetalhamentoRemedio buscar(Long id) {
-        var remedio = repository.getReferenceById(id);
+
+        var remedio = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Remédio não encontrado"));
+
         return new DadosDetalhamentoRemedio(remedio);
     }
 
@@ -42,26 +46,43 @@ public class RemedioService {
 
     @Transactional
     public DadosDetalhamentoRemedio atualizar(DadosAtualizarRemedio dados) {
-        var remedio = repository.getReferenceById(dados.id());
+
+        var remedio = repository.findById(dados.id())
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Remédio não encontrado"));
+
         remedio.atualizarInformacoes(dados);
+
         return new DadosDetalhamentoRemedio(remedio);
     }
 
     @Transactional
     public void excluir(Long id) {
-        repository.deleteById(id);
+
+        var remedio = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Remédio não encontrado"));
+
+        repository.delete(remedio);
     }
 
     @Transactional
     public void inativar(Long id) {
-        var remedio = repository.getReferenceById(id);
+
+        var remedio = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Remédio não encontrado"));
+
         remedio.inativar();
     }
 
     @Transactional
     public void reativar(Long id) {
-        var remedio = repository.getReferenceById(id);
+
+        var remedio = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Remédio não encontrado"));
+
         remedio.reativar();
     }
 }
-

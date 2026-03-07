@@ -19,6 +19,16 @@
             "projectName": "Testando",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TestandoSpringBootApplication<medicineapi>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.test.spring.medicineapi.TestandoSpringBootApplication",
+            "projectName": "medicineapi",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
