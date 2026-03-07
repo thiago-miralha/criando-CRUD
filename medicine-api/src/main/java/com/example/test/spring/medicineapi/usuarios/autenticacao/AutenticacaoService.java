@@ -1,4 +1,4 @@
-package com.example.test.spring.medicineapi.infra.security;
+package com.example.test.spring.medicineapi.usuarios.autenticacao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
