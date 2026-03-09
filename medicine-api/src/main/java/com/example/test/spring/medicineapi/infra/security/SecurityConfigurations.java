@@ -26,13 +26,19 @@ public class SecurityConfigurations {
 
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/autenticacao/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/remedio").hasRole("ADMIN")
-                        .anyRequest().authenticated())
-                .addFilterBefore(securityFilter,UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .authorizeHttpRequests(auth -> auth
 
+                        .requestMatchers("/autenticacao/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/remedios/**").hasAnyRole("USER", "ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/remedios/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/remedios/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/remedios/**").hasRole("ADMIN")
+
+                        .anyRequest().authenticated())
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
     @Bean

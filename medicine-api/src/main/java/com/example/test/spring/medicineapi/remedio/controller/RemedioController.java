@@ -37,7 +37,7 @@ public class RemedioController {
 
         var dto = service.cadastrar(dados);
 
-        var uri = uriBuilder.path("/remedio/{id}").buildAndExpand(dto.id()).toUri();
+        var uri = uriBuilder.path("/remedios/{id}").buildAndExpand(dto.id()).toUri();
 
         return ResponseEntity.created(uri).body(dto);
     }
