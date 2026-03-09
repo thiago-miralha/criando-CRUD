@@ -1,14 +1,5 @@
 package com.example.test.spring.medicineapi.usuarios.autenticacao;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.test.spring.medicineapi.usuarios.domain.Usuario;
-import com.example.test.spring.medicineapi.usuarios.repository.UsuarioRepository;
-
-import jakarta.validation.Valid;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,10 +7,21 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password4j.BcryptPassword4jPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.test.spring.medicineapi.infra.security.TokenService;
+import com.example.test.spring.medicineapi.usuarios.domain.Usuario;
+import com.example.test.spring.medicineapi.usuarios.repository.UsuarioRepository;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/autenticacao")
 public class AutenticacaoController {
+
+    @Autowired
+    TokenService tokenService;
 
     @Autowired
     private UsuarioRepository repository;
@@ -30,10 +32,11 @@ public class AutenticacaoController {
     @PostMapping("/login")
     public ResponseEntity<?> efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
 
-        var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
-        var autenticacao = manager.authenticate(token);
+        var usernamePassword = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+        var authentication = manager.authenticate(usernamePassword);
+        var tokenJWT = tokenService.generateToken((Usuario) authentication.getPrincipal());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new LoginResponseDTO(tokenJWT));
     }
 
     @PostMapping("/cadastrologin")
